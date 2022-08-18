@@ -1,4 +1,4 @@
-# CpuShader
+# CPU Renderer
 从零开始写一个Cpu渲染器，对C++小白友好
 
 编程语言：C++
