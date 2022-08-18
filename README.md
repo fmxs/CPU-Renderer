@@ -6,14 +6,18 @@
 
 ## 编写流程：
 ## 1. 数学库的编写
-实现VECTOR3，VECTOR4，MATRIX4，转置矩阵，矩阵与向量的乘法问题（左乘，右乘）
+1. 实现VECTOR3
+2. 实现VECTOR4，
+3. 实现MATRIX4，包括转置矩阵，矩阵与向量的乘法问题（左乘，右乘）
 ## 2. Win窗口的创建
-主要使用win api去创建一个1024*768的窗口
+1. 主要使用win api去创建一个1024*768的窗口
 ## 3. Win窗口清除算法
-两种方法，一种直接使用win api 的setpixel 
-或者是 使用位图Bitblt绘制（涉及Framebuffer的概念，使用hdc）
+有两种方法，
+1. 直接使用win api 的setpixel 
+2. 使用位图Bitblt绘制（涉及Framebuffer的概念，使用hdc）
 ## 4. 绘制一条线段
-DDA、B
+1. 使用DDA(digital differential analyzer) 算法，在一个坐标轴上对线段以单位间隔取样，计算另一坐标轴上最靠近线段的对应整数值。
+2. 使用Bresenham算法。Bresenham 算法是一个只用整数增量进行计算，精确并且有效的光栅线生成算法。
 ## 5. 三角形坐标系转化（注意左右手系的选择）（1,1,1）（100,200） (200,300)
 World（model）、View（Camera）、Projection、NDC、视口变换
 ## 6. 三角形矩阵变换
