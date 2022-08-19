@@ -7,21 +7,21 @@ template <typename myT>
 class Model
 {
 private:
-	vector3 localPosition;// ±¾µØ×ø±êÏµµÄ×ø±ê
-	vector4 quaternion;// ËÄÔªÊı
+	vector3 localPosition;// æœ¬åœ°åæ ‡ç³»çš„åæ ‡
+	vector4 quaternion;// å››å…ƒæ•°
 public:
 	Model();
 	Model(float x,float y,float z);
 	Model(vector3 pos, vector4 q);
-	// Æ½ÒÆ¾ØÕó
+	// å¹³ç§»çŸ©é˜µ
 	Mat GetTranslate(float worldx, float worldy, float worldz);
-	// Ëõ·Å¾ØÕó
+	// ç¼©æ”¾çŸ©é˜µ
 	Mat GetScale(float x, float y, float z);
-	// Ğı×ª¾ØÕó
+	// æ—‹è½¬çŸ©é˜µ
 	Mat GetRotateX(float r);
 	Mat GetRotateY(float r);
 	Mat GetRotateZ(float r);
-	// ¾Ö²¿×ªÊÀ½çµÄ¾ØÕó(Ê¹ÓÃÊ±Òª¿¼ÂÇ×ó¡¢ÓÒÊÖ×ø±êÏµ£©
+	// å±€éƒ¨è½¬ä¸–ç•Œçš„çŸ©é˜µ(ä½¿ç”¨æ—¶è¦è€ƒè™‘å·¦ã€å³æ‰‹åæ ‡ç³»ï¼‰
 	Mat ModelMatrix(float worldx, float worldy, float worldz);
 };
 template <typename myT>
