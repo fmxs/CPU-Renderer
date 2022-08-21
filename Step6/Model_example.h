@@ -8,24 +8,24 @@ template <typename myT>
 class Model
 {
 private:
-	vector3 localPosition;// ±¾µØ×ø±êÏµµÄ×ø±ê
-	vector4 quaternion;// ËÄÔªÊı
+	vector3 localPosition;// æœ¬åœ°åæ ‡ç³»çš„åæ ‡
+	vector4 quaternion;// å››å…ƒæ•°
 public:
 	Model();
 	Model(float x,float y,float z);
 	Model(vector3 pos, vector4 q);
-	// Æ½ÒÆ¾ØÕó
+	// å¹³ç§»çŸ©é˜µ
 	Mat<myT> GetTranslate(float worldx, float worldy, float worldz);
-	// Ëõ·Å¾ØÕó
+	// ç¼©æ”¾çŸ©é˜µ
 	Mat<myT> GetScale(float x, float y, float z);
 	Mat<myT> GetScale(float scale);
-	// Ğı×ª¾ØÕóµÚÒ»ÖÖĞ´·¨
+	// æ—‹è½¬çŸ©é˜µç¬¬ä¸€ç§å†™æ³•
 	Mat<myT> GetRotateX(float r);
 	Mat<myT> GetRotateY(float r);
 	Mat<myT> GetRotateZ(float r);
-	// Ğı×ª¾ØÕóµÚ¶şÖÖĞ´·¨
+	// æ—‹è½¬çŸ©é˜µç¬¬äºŒç§å†™æ³•
 	Mat<myT> Rotate(float x, float y, float z);
-	// ¾Ö²¿×ªÊÀ½çµÄ¾ØÕó(Ê¹ÓÃÊ±Òª¿¼ÂÇ×ó¡¢ÓÒÊÖ×ø±êÏµ£©
+	// å±€éƒ¨è½¬ä¸–ç•Œçš„çŸ©é˜µ(ä½¿ç”¨æ—¶è¦è€ƒè™‘å·¦ã€å³æ‰‹åæ ‡ç³»ï¼‰
 	Mat<myT> ModelMatrix(float worldx, float worldy, float worldz);
 };
 template <typename myT>
@@ -101,6 +101,8 @@ Mat<myT> Model<myT>::Rotate(float x, float y, float  z)
 	matrix.num[0][2] = -cx_sy * cosz + sinx * sinz;
 	matrix.num[1][2] = cx_sy * sinz + sinx * cosz;
 	matrix.num[2][2] = cosx * cosy;
+	
+	matrix.num[3][3] = 1;
 	return matrix;
 }
 
