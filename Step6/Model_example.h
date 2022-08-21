@@ -5,7 +5,7 @@
 #include "Vector4.h"
 constexpr auto M_PI = 3.14159265358979323846;
 template <typename myT>
-class Model
+class Model// Model 矩阵
 {
 private:
 	vector3 localPosition;// 本地坐标系的坐标
