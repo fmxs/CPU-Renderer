@@ -2,8 +2,8 @@
 Step2_myWindows.zip
 
 ## 需要环境
-Visual studio，
-并安装了工作负荷“桌面应用和移动应用中的“使用C++的桌面开发”
+- Visual studio
+- 安装工作负荷 “桌面应用和移动应用” ==> “使用C++的桌面开发”
 
 ## 打开工程的步骤
 1. 下载压缩包Step2_myWindows.zip
