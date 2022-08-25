@@ -6,7 +6,7 @@ Step2_myWindows.zip
 - 安装工作负荷 “桌面应用和移动应用” ==> “使用C++的桌面开发”
 
 ## 打开工程的步骤
-1. 下载压缩包Step2_myWindows.zip
+1. 打开文件夹EmapleProject，下载里面的压缩包Step2_myWindows.zip
 2. 使用解压工具，解压Step2_myWindows.zip，得到Step2_myWindows.zip文件夹
 3. 打开Step2_myWindows.zip文件夹
 4. 双击文件夹中的Step2_myWindows.sln文件
