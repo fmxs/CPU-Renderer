@@ -20,20 +20,24 @@ public:
 	Mat operator*(const Mat<myT>&);
 	Mat& operator=(const Mat<myT>&);
 	myT* operator[](const int);
-	// ×ªÖÃ¾ØÕó
+	// è½¬ç½®çŸ©é˜µ
 	Mat Transpose(); 
 	template <typename myT>
 	friend ostream& operator<<(ostream&, const Mat<myT>&); 
 	template <typename myT>
 	friend istream& operator>>(istream&, const Mat<myT>&);
-	// ¾ØÕó³Ë¾ØÕó
+	// çŸ©é˜µä¹˜çŸ©é˜µ
 	Mat Premultiply(const Mat<myT>& matrix1, const Mat<myT>& matrix2);
-	// ¾ØÕó×ó³ËÁĞÏòÁ¿
+	// çŸ©é˜µå·¦ä¹˜åˆ—å‘é‡
 	Mat Premultiply_vec(const Mat<myT>& matrix, const vector3& vector3);
-	// ¾ØÕóÓÒ³ËĞĞÏòÁ¿
+	// çŸ©é˜µå³ä¹˜è¡Œå‘é‡
 	Mat Postmultiply(const Mat<myT>& matrix1, const Mat<myT>& matrix2);
-	// µ¥Î»¾ØÕó
+	// å•ä½çŸ©é˜µ
 	Mat Identity();
+	// LookAtçŸ©é˜µ
+	Mat LookAt(vector3 camPos, vector3 target, vector3 up);
+	// å°†çŸ©é˜µå–å
+	Mat Inverse(Mat& mat);
 };
 
 template <typename myT>
@@ -261,8 +265,8 @@ Mat<myT> Mat<myT>::Transpose()
 }
 
 /// <summary>
-/// ¾ØÕó×ó³ËÏòÁ¿£º¾ØÕó * ÁĞÏòÁ¿ = ÁĞÏòÁ¿
-/// ¾ØÕóÔÚ×ó±ß£¬ÏòÁ¿ÔÚÓÒ±ß£¬ËùÒÔ½Ğ×ó³Ë
+/// çŸ©é˜µå·¦ä¹˜å‘é‡ï¼šçŸ©é˜µ * åˆ—å‘é‡ = åˆ—å‘é‡
+/// çŸ©é˜µåœ¨å·¦è¾¹ï¼Œå‘é‡åœ¨å³è¾¹ï¼Œæ‰€ä»¥å«å·¦ä¹˜
 /// </summary>
 /// <typeparam name="myT"></typeparam>
 /// <param name="matrix"></param>
@@ -271,13 +275,13 @@ Mat<myT> Mat<myT>::Transpose()
 template <typename myT>
 Mat<myT> Mat<myT>::Premultiply_vec(const Mat<myT>& matrix, const vector3& vec)
 {
-	// vector3 ×ª³É ÁĞÏòÁ¿
+	// vector3 è½¬æˆ åˆ—å‘é‡
 	vector<vector<int>> colVector(4, vector<int>(4, 0));
 	colVector[0][0] = vec.x;
 	colVector[0][1] = vec.y;
 	colVector[0][2] = vec.z;
 
-	// A¾ØÕóµÄÁĞ ±ØĞëµÈÓÚ B¾ØÕóµÄĞĞ
+	// AçŸ©é˜µçš„åˆ— å¿…é¡»ç­‰äº BçŸ©é˜µçš„è¡Œ
 	if (matrix.col != colVector.size())
 	{
 		string str = "no matching matrix";
@@ -303,10 +307,10 @@ Mat<myT> Mat<myT>::Premultiply_vec(const Mat<myT>& matrix, const vector3& vec)
 }
 
 /// <summary>
-/// Á½¸ö¾ØÕóÏà³Ë
+/// ä¸¤ä¸ªçŸ©é˜µç›¸ä¹˜
 /// </summary>
-/// <param name="matrix">¾ØÕóA</param>
-/// <param name="vector">¾ØÕóB</param>
+/// <param name="matrix">çŸ©é˜µA</param>
+/// <param name="vector">çŸ©é˜µB</param>
 /// <returns></returns>
 template <typename myT>
 Mat<myT> Mat<myT>::Premultiply(const Mat<myT>& matrix, const Mat<myT>& vector)
@@ -335,8 +339,8 @@ Mat<myT> Mat<myT>::Premultiply(const Mat<myT>& matrix, const Mat<myT>& vector)
 	return res;
 }
 
-// ¾ØÕóÓÒ³ËÏòÁ¿£ºĞĞÏòÁ¿ * ¾ØÕó = ĞĞÏòÁ¿
-// ¾ØÕóÔÚÓÒ±ß£¬ÏòÁ¿ÔÚ×ó±ß£¬ËùÒÔ½ĞÓÒ³Ë
+// çŸ©é˜µå³ä¹˜å‘é‡ï¼šè¡Œå‘é‡ * çŸ©é˜µ = è¡Œå‘é‡
+// çŸ©é˜µåœ¨å³è¾¹ï¼Œå‘é‡åœ¨å·¦è¾¹ï¼Œæ‰€ä»¥å«å³ä¹˜
 template <typename myT>
 Mat<myT> Mat<myT>::Postmultiply(const Mat<myT>& vector, const Mat<myT>& matrix)
 {
@@ -365,9 +369,9 @@ Mat<myT> Mat<myT>::Postmultiply(const Mat<myT>& vector, const Mat<myT>& matrix)
 }
 
 /// <summary>
-/// ´´½¨µ¥Î»¾ØÕó
+/// åˆ›å»ºå•ä½çŸ©é˜µ
 /// </summary>
-/// <returns>µ¥Î»¾ØÕó</returns>
+/// <returns>å•ä½çŸ©é˜µ</returns>
 template<typename myT>
 Mat<myT> Mat<myT>::Identity()
 {
@@ -378,4 +382,43 @@ Mat<myT> Mat<myT>::Identity()
 	return *this;
 }
 
+/// <summary>
+/// åˆ›å»ºä¸€ä¸ªç»™å®šç›®æ ‡çš„è§‚å¯ŸçŸ©é˜µ
+/// </summary>
+/// <param name="camPos">æ‘„åƒæœºä½ç½®</param>
+/// <param name="target">ç›®æ ‡ä½ç½®</param>
+/// <param name="up">ä¸–ç•Œç©ºé—´ä¸­è¡¨ç¤ºæœä¸Šçš„ä¸Šå‘é‡</param>
+/// <returns></returns>
+template<typename myT>
+Mat<myT> Mat<myT>::LookAt(vector3 camPos, vector3 tar, vector3 up)
+{
+	Mat<myT> matrix(4, 4);
+	vector3 zAxis = vector3::Normalize(zAxis.Subtract(camPos, tar));
+	vector3 xAxis = vector3::Normalize(vector3::Cross(up, zAxis));
+	vector3 yAxis = vector3::Normalize(vector3::Cross(zAxis, xAxis));
+	matrix.num[0][0] = xAxis.x;
+	matrix.num[0][1] = xAxis.y;
+	matrix.num[0][2] = xAxis.z;
+	matrix.num[1][0] = yAxis.x;
+	matrix.num[1][1] = yAxis.y;
+	matrix.num[1][2] = yAxis.z;
+	matrix.num[2][0] = zAxis.x;
+	matrix.num[2][1] = zAxis.y;
+	matrix.num[2][2] = zAxis.z;
+	matrix.num[3][0] = camPos.x;
+	matrix.num[3][1] = camPos.y;
+	matrix.num[3][2] = camPos.z;
+	matrix.num[3][3] = 1;
+	return matrix;
+}
+template<typename myT>
+Mat<myT> Mat<myT>::Inverse(Mat& mat)
+{
+	for (int i = 0; i < mat.row; i++) {
+		for (int j = 0; j < mat.col; j++) {
+			mat.num[i][j] = -mat.num[i][j];
+		}
+	}
+	return mat;
+}
 #endif
