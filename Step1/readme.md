@@ -19,3 +19,7 @@
 
 ![image](https://user-images.githubusercontent.com/65701532/186636461-a3b63be3-5def-402f-a4f7-e237a39191a7.png)
 
+# 本节实现了什么
+1. 实现VECTOR3，包括用float[]数组初始化、用类初始化两种方式
+2. 实现VECTOR4，用类初始化
+3. 实现MATRIX4，包括转置矩阵，矩阵与向量的乘法问题（左乘，右乘），以及矩阵和矩阵相乘
