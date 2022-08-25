@@ -1,8 +1,10 @@
 # CPU Renderer
 从零开始写一个Cpu渲染器，对C++小白友好
 
-编程语言：C++
-编译器：Visual Studio 2022、Visual Studio Code
+语言：C++
+
+编译器：Visual Studio 2022
+
 
 ## 编写流程：
 ## 1. 数学库的编写
