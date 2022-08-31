@@ -13,6 +13,12 @@ Step2_myWindows.zip
 5. 等待VS启动，在VS中打开main.c
 6. 运行工程
 
+# 本节工程是如何创建的
+本节工程并不是控制台应用程序，而是桌面应用程序，具体创建方法如下：
+1. ![image](https://user-images.githubusercontent.com/65701532/187611437-dba9a15d-6d68-4c1b-a6c8-83855113b168.png)
+2. ![image](https://user-images.githubusercontent.com/65701532/187611472-65e0e92f-c378-4dc7-bafb-b7bbaffa4cf4.png)
+3. ![image](https://user-images.githubusercontent.com/65701532/187611560-845e0192-6613-443a-9305-3f620dcd2dde.png)
+
 # 本节实现了什么
 1. 使用win api创建一个1024*768的窗口，以及鼠标监听事件
 
