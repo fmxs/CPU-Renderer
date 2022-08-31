@@ -29,9 +29,11 @@ Step2_myWindows.zip
 复制成功会出现绿勾勾，如下图
 ![image](https://user-images.githubusercontent.com/65701532/187612608-bc199af5-cafe-48c6-87e9-1abeada058ca.png)
 6. 将代码粘贴到第6步创建的main.c里
-7. 保存一下，弹出提示框就选择 是
-![image](https://user-images.githubusercontent.com/65701532/187612788-18696f14-432c-4a07-9578-a32acadd284e.png)
-8. 运行工程
+7. 保存一下，若弹出提示框，选择以其他编码保存
+![image](https://user-images.githubusercontent.com/65701532/187613182-1a31b4f0-9668-4810-af3e-43114039e987.png)
+8. 选择UTF-8
+![image](https://user-images.githubusercontent.com/65701532/187613261-7660081f-64d8-4029-bbeb-4bf783383224.png)
+9. 运行工程
 ![image](https://user-images.githubusercontent.com/65701532/187612855-b87f639d-553e-4d1e-aa91-99b6d248c76f.png)
 
 # 本节实现了什么
