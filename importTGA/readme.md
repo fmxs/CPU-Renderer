@@ -1,6 +1,6 @@
 代码参考来源：TinyRenderer
 
-# TGA如何使用
+# 如何在VS中导入并使用TGA
 ## 步骤
 打开如下github链接：
 https://github.com/ssloy/tinyrenderer/tree/909fe20934ba5334144d2c748805690a1fa4c89f
