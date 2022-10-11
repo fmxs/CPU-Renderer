@@ -2,6 +2,7 @@
 遇到了一个问题，
 使用了本节提供的bresenham代码进行了绘制，以下是结果图：
 ![image](https://user-images.githubusercontent.com/65701532/195054017-8fcf977c-d7fb-4eb2-b4ea-653f447d8562.png)
+
 代码如下：
 ```
 void Bresenham(int x0, int y0, int xn, int yn, TGAImage& image, TGAColor color) {
@@ -49,6 +50,7 @@ void Bresenham(int x0, int y0, int xn, int yn, TGAImage& image, TGAColor color) 
 
 接着又使用了tinyRenderer作者提供的bresenham代码进行绘制，以下是结果图：
 ![image](https://user-images.githubusercontent.com/65701532/195054158-a0c0f891-9ffb-46be-b4ab-44958ee6d0e6.png)
+
 代码如下：
 ```
 void line(int x0, int y0, int x1, int y1, TGAImage &image, TGAColor color) {
@@ -64,18 +66,6 @@ void line(int x0, int y0, int x1, int y1, TGAImage &image, TGAColor color) {
         std::swap(y0, y1);
     }
 
-    // solution1  0.125
-    /*for (int x=x0; x<=x1; x++) {
-        float t = (x-x0)/(float)(x1-x0);
-        int y = y0*(1.-t) + y1*t;
-        if (steep) {
-            image.set(y, x, color);
-        } else {
-            image.set(x, y, color);
-        }
-    }*/
-
-    // solution2  0.126
     int dx = x1 - x0;
     int dy = y1 - y0;
     int derror2 = std::abs(dy) * 2;
@@ -94,4 +84,5 @@ void line(int x0, int y0, int x1, int y1, TGAImage &image, TGAColor color) {
             error2 -= dx * 2;
         }
     }
+}
 ```
