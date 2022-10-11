@@ -1,5 +1,7 @@
-# 重复绘制，这是怎么回事？
-遇到了一个问题，
+# 这是怎么回事？
+我发现本节bresenham代码中每条线有重复绘制的嫌疑。
+
+# 运行结果和代码
 使用了本节提供的bresenham代码进行了绘制，以下是结果图：
 ![image](https://user-images.githubusercontent.com/65701532/195054017-8fcf977c-d7fb-4eb2-b4ea-653f447d8562.png)
 
