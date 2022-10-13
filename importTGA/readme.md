@@ -1,5 +1,6 @@
 教你导入并使用TGA
-代码参考来源：TinyRenderer
+
+参考来源：TinyRenderer
 ## 步骤
 1，打开如下github链接：
 https://github.com/ssloy/tinyrenderer/tree/909fe20934ba5334144d2c748805690a1fa4c89f
