@@ -1,4 +1,4 @@
-# 这是怎么回事？
+# bug
 我发现本节bresenham代码中,三角形的相邻边似乎被重复绘制了。
 提了stackoverflow问题，但是被关闭。
 https://stackoverflow.com/questions/74026312/why-does-bresenhams-line-seem-draw-each-line-twice
