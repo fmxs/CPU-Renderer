@@ -1,5 +1,7 @@
 # 这是怎么回事？
-我发现本节bresenham代码中每条线有重复绘制的嫌疑。
+我发现本节bresenham代码中,三角形的相邻边似乎被重复绘制了。
+提了stackoverflow问题，但是被关闭。
+https://stackoverflow.com/questions/74026312/why-does-bresenhams-line-seem-draw-each-line-twice
 
 # 运行结果和代码
 使用了本节提供的bresenham代码进行了绘制，以下是结果图：
