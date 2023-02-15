@@ -8,9 +8,7 @@
 
 ## 编写流程：
 ## 0. 导入
-请看 importTGA 和 importObject文件夹。
-
-教程链接：
+请看 importTGA 和 importObject文件夹，看懂了就不用看下面的教程链接了：
 
 https://www.notion.so/Import-TGA-202302131600-b26e67a90401473bab05595763e5f69f
 
