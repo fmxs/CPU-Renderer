@@ -7,13 +7,6 @@
 
 
 ## 编写流程：
-## 0. 导入
-请看 importTGA 和 importObject文件夹，看懂了就不用看下面的教程链接了：
-
-https://www.notion.so/Import-TGA-202302131600-b26e67a90401473bab05595763e5f69f
-
-https://www.notion.so/Import-Object-202302131847-f41999a350bd4bf09c55a732e9cafa93
-
 ## 1. 数学库的编写
 1. 实现VECTOR3
 2. 实现VECTOR4，
