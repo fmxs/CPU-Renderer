@@ -33,6 +33,6 @@ World（model）、View（Camera）、Projection、NDC、视口变换
 ## 11. 消隐算法(zbuffer)
 
 # Tiny Renderer
-Tiny Renderer是一个外国人制作的CPU渲染器教程，本人根据他的英文教程写了一篇中文教程。请在Notion上查阅：
+Tiny Renderer是ssloy制作的CPU渲染器教程，不过英文看起来还是有点痛苦，所以本人根据他的教程加上自己的理解写了一篇中文教程。请在Notion上查阅：
 
 https://www.notion.so/TinyRenderer-202302131552-b99e56b11f714a269960e88fe5fcd371
