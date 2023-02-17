@@ -31,3 +31,8 @@ World（model）、View（Camera）、Projection、NDC、视口变换
 ## 9. 扫描线算法(左上规则)
 ## 10. 背面剔除
 ## 11. 消隐算法(zbuffer)
+
+# Tiny Renderer
+Tiny Renderer是一个外国人制作的CPU渲染器教程，本人根据他的英文教程写了一篇中文教程。请在Notion上查阅：
+
+https://www.notion.so/TinyRenderer-202302131552-b99e56b11f714a269960e88fe5fcd371
