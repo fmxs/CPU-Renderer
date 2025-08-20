@@ -64,6 +64,10 @@ brew install glfw
 * Specification: OpenGL
 * API: OpenGL 3.2 + Core Profile + Forward Compatible
 
+在点击确认生成后，你应该会看到这样的一个网页：
+<img width="2128" height="1172" alt="image" src="https://github.com/user-attachments/assets/f1d5443e-c0c7-4bb2-8681-43fe44f34006" />
+
+
 下载 zip 后，将内容放到:
 
 * `glad.c` 放到 `src/`
