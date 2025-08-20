@@ -34,3 +34,7 @@
 # VS Folder
 .vscode
 build/
+
+# macOS Finder 的缓存垃圾
+.DS_Store
+*/.DS_Store
