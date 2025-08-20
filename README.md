@@ -58,9 +58,10 @@ World（model）、View（Camera）、Projection、NDC、视口变换
 - 三角形旋转（顶点着色器中通过时间控制）
 - 颜色呼吸（片元着色器中通过 sin(time) 控制）
 
-### 📷 效果图：
+### 📷 效果图（带呼吸效果）：
+<img width="1600" height="1260" alt="image" src="https://github.com/user-attachments/assets/4d03da7a-0596-4dff-aecb-9d7368341beb" />
 
-（可以加一张截图或 gif）
+
 
 ### 📝 使用方法：
 
