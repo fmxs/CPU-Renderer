@@ -1,12 +1,12 @@
-
-# Tiny Renderer
+本仓库包括 CPU 渲染器实现（使用 WinAPI）以及 GPU 渲染器对照 demo（使用 OpenGL）。
+# 关于 Tiny Renderer
 Tiny Renderer是ssloy制作的CPU渲染器教程，不过是全英文，本人根据他的教程写了中文教程。
 
 由于github记笔记比较麻烦，请转移至Notion上查阅：
 
 https://www.notion.so/TinyRenderer-202302131552-b99e56b11f714a269960e88fe5fcd371
 
-# CPU Renderer
+# CPU Renderer编写流程
 从零开始写一个Cpu渲染器，对C++小白友好
 
 语言：C++
@@ -39,3 +39,33 @@ World（model）、View（Camera）、Projection、NDC、视口变换
 ## 10. 背面剔除
 ## 11. 消隐算法(zbuffer)
 
+# 🌈 OpenGL 彩色三角形 Demo（macOS 版）
+
+> 🚀 这个 Demo 是我为了实践 OpenGL 渲染流水线，结合 Shader 动态效果而写的小项目，**从顶点坐标 → 插值颜色 → 动态 uniform 控制动画**，完整打通了现代 GPU 管线流程。  
+> 它可作为本仓库 CPU 渲染器部分的「GPU 对照组」，有助于理解两种渲染方式的本质异同。
+
+### 📁 项目路径：
+`opengl_triangle_demo/`
+
+### 💻 技术栈：
+- C++
+- OpenGL 3.2 Core Profile（macOS 兼容）
+- GLAD + GLFW
+- CMake 构建系统
+
+### 🎯 实现效果：
+- 屏幕显示一个彩色渐变三角形
+- 三角形旋转（顶点着色器中通过时间控制）
+- 颜色呼吸（片元着色器中通过 sin(time) 控制）
+
+### 📷 效果图：
+
+（可以加一张截图或 gif）
+
+### 📝 使用方法：
+
+```bash
+cd opengl_triangle_demo
+cmake -S . -B build
+cmake --build build -j
+./build/bin/tri
