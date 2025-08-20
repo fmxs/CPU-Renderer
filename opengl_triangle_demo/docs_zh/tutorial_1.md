@@ -60,11 +60,12 @@ brew install glfw
 
 前往 [https://gen.glad.sh/](https://gen.glad.sh/) 选择配置：
 
-* Language: C/C++
-* Specification: OpenGL
-* API: OpenGL 3.2 + Core Profile + Forward Compatible
+* Generator: C/C++
+* APIs: GL 3.2 + Core
+<img width="2128" height="1478" alt="image" src="https://github.com/user-attachments/assets/ac7cb650-5ead-452c-8dfd-1871caec5453" />
 
-在点击确认生成后，你应该会看到这样的一个网页：
+
+在点击网页最下方的按钮generate后，你应该会看到这样的一个网页：
 <img width="2128" height="1172" alt="image" src="https://github.com/user-attachments/assets/f1d5443e-c0c7-4bb2-8681-43fe44f34006" />
 
 
