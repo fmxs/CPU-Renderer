@@ -71,7 +71,7 @@ brew install glfw
 
 下载 zip 后，将内容放到:
 
-* `glad.c` 放到 `src/`
-* `glad.h` 放到 `include/glad/`
+* `gl.c` 放到 `src/`
+* `gl.h` 放到 `include/glad/`
 * `khrplatform.h` 放到 `include/KHR/`
 
