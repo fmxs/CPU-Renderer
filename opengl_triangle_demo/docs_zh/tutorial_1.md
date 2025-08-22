@@ -29,14 +29,14 @@
 opengl_triangle_demo/
 ├── CMakeLists.txt
 ├── include/
-│   ├── glad/glad.h
+│   ├── glad/gl.h
 │   └── KHR/khrplatform.h
 ├── shaders/
 │   ├── triangle.vert
 │   └── triangle.frag
 ├── src/
 │   ├── main.cpp
-│   └── glad.c
+│   └── gl.c
 └── build/      # 构建后生成
 ```
 
