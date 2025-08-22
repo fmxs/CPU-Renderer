@@ -2,7 +2,7 @@
 
 ## 一、项目简介
 
-这个 Demo 是我为了实践 OpenGL 渲染流水线而构建的小程序，通过一个给定三角形的顶点位置和颜色，通过 Shader 实现颜色渐变、自动旋转和呼吸效果，完整路途连通 GPU 渲染流程。
+这个 Demo 是我为了实践 OpenGL 渲染流水线而构建的小程序，通过一个给定三角形的顶点位置和颜色，通过 Shader 实现颜色渐变和呼吸效果，完整路途连通 GPU 渲染流程。
 
 ### 效果预览
 
@@ -44,7 +44,7 @@ opengl_triangle_demo/
 
 * `main.cpp`：主程序，初始化 GLFW/GLAD，创建窗口，绘制三角形
 * `glad.c/.h` + `khrplatform.h`：OpenGL 函数加载器
-* `triangle.vert`：vertex shader，做坐标旋转和颜色传递
+* `triangle.vert`：vertex shader，做颜色传递
 * `triangle.frag`：frag shader，计算呼吸效果并添加渐变
 * `CMakeLists.txt`：构建配置
 
