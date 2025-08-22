@@ -43,7 +43,7 @@ opengl_triangle_demo/
 ### 各文件说明
 
 * `main.cpp`：主程序，初始化 GLFW/GLAD，创建窗口，绘制三角形
-* `glad.c/.h` + `khrplatform.h`：OpenGL 函数加载器
+* `gl.c/.h` + `khrplatform.h`：OpenGL 函数加载器
 * `triangle.vert`：vertex shader，做颜色传递
 * `triangle.frag`：frag shader，计算呼吸效果并添加渐变
 * `CMakeLists.txt`：构建配置
