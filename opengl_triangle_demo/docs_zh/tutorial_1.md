@@ -24,9 +24,19 @@
 > 注：macOS 上 OpenGL 被弃用，但 3.2 Core 版本仍可用，是经典入门选择。
 
 ## 三、项目结构
-在本地创建一个文件夹opengl_triangle_demo，
-创建include文件夹，shaders文件夹，src文件夹，build文件夹。
-最终的项目结构应该是这样的（目前还没有创建具体文件）：
+首先在本地新建一个大文件夹，名字叫 opengl_triangle_demo。
+再创建几个子文件夹：
+
+include：放头文件（以后 GLAD 的头文件会住在这里）。
+
+shaders：放着色器文件（.vert、.frag），就像给三角形化妆的工具。
+
+src：放源码（.cpp、.c），也就是主程序入口和 GLAD 的实现。
+
+build：空着，等我们用 CMake 构建工程时，它会生成一堆编译结果文件。
+
+最终的目录长这样（此时还没往里塞具体文件）：
+
 ```
 opengl_triangle_demo/
 ├── CMakeLists.txt
