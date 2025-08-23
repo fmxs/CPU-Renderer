@@ -24,7 +24,9 @@
 > 注：macOS 上 OpenGL 被弃用，但 3.2 Core 版本仍可用，是经典入门选择。
 
 ## 三、项目结构
-
+在本地创建一个文件夹opengl_triangle_demo，
+创建include文件夹，shaders文件夹，src文件夹，build文件夹。
+最终的项目结构应该是这样的（目前还没有创建具体文件）：
 ```
 opengl_triangle_demo/
 ├── CMakeLists.txt
