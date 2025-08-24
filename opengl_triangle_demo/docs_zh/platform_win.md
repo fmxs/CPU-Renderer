@@ -18,9 +18,11 @@
 ```
 C:\dev\opengl_triangle_demo\
 ├── CMakeLists.txt        # 构建配置文件
-├── include\              # 头文件目录（GLAD/KHR 放这里）
+├── include\              # 头文件目录（GLAD/KHR/GLFW 放这里）
 │   ├── glad\
-│   └── KHR\
+│   ├── KHR\
+│   └── GLFW\
+├── libs\                 # 库文件目录（.lib 放这里，编译时使用）
 ├── shaders\              # 着色器文件目录
 │   ├── triangle.vert
 │   └── triangle.frag
@@ -39,12 +41,23 @@ C:\dev\opengl_triangle_demo\
 ### 1. GLFW
 
 1. 前往 [GLFW 官网下载页](https://www.glfw.org/download.html)。
+
 2. 下载对应的预编译包，例如：`glfw-3.3.8.bin.WIN64.zip`。
-3. 解压后，将内容放置到项目中：
+
+3. 解压后，你会看到：
+
+   * `include/GLFW/glfw3.h`
+   * `lib-vc2022/glfw3.lib` （静态库）
+   * `lib-vc2022/glfw3dll.lib` （动态库的导入库）
+   * `lib-vc2022/glfw3.dll` （动态库本体，运行时需要）
+
+4. 放置方式：
 
    * `include/GLFW` → 工程 `include/GLFW`
    * `lib-vc2022/*.lib` → 工程 `libs/`
-   * `lib-vc2022/*.dll` → 可执行文件所在目录（运行时需要）
+   * `lib-vc2022/*.dll` → 可执行文件所在目录（通常是 `build/Debug/` 或 `build/Release/`）
+
+> **提示：** 建议新手使用 **动态库版本** → 编译时链接 `glfw3dll.lib`，运行时需要确保 `glfw3.dll` 在 exe 同目录。
 
 ### 2. GLAD
 
@@ -63,13 +76,13 @@ C:\dev\opengl_triangle_demo\
 
 ## CMake 配置
 
-Windows 下需要显式链接 `opengl32.lib` 和 `glfw3.lib`。在 `CMakeLists.txt` 里添加：
+Windows 下需要显式链接 `opengl32.lib` 和 `glfw3dll.lib`。在 `CMakeLists.txt` 里添加：
 
 ```cmake
-target_link_libraries(demo PRIVATE glfw3 opengl32)
+target_link_libraries(demo PRIVATE glfw3dll opengl32)
 ```
 
-如果使用的是 **预编译 GLFW 库**，请确保在 CMakeLists.txt 里设置：
+确保在 CMakeLists.txt 里设置：
 
 ```cmake
 include_directories(${CMAKE_SOURCE_DIR}/include)
@@ -84,7 +97,7 @@ link_directories(${CMAKE_SOURCE_DIR}/libs)
 
 * **C/C++ → 附加包含目录**：`include/`
 * **链接器 → 附加库目录**：`libs/`
-* **链接器 → 输入 → 附加依赖项**：`glfw3.lib; opengl32.lib;`
+* **链接器 → 输入 → 附加依赖项**：`glfw3dll.lib; opengl32.lib;`
 
 ---
 
