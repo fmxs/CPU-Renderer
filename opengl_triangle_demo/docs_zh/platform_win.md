@@ -11,6 +11,29 @@
 
 ---
 
+## 项目目录结构
+
+以 `C:\dev\opengl_triangle_demo\` 为例，你需要手动创建以下文件夹结构：
+
+```
+C:\dev\opengl_triangle_demo\
+├── CMakeLists.txt        # 构建配置文件
+├── include\              # 头文件目录（GLAD/KHR 放这里）
+│   ├── glad\
+│   └── KHR\
+├── shaders\              # 着色器文件目录
+│   ├── triangle.vert
+│   └── triangle.frag
+├── src\                  # 源码目录
+│   ├── main.cpp
+│   └── gl.c
+└── build\                # 空目录，CMake 会在这里生成构建结果
+```
+
+这样 VS 或 CMake 才能正确识别工程。
+
+---
+
 ## 安装依赖
 
 ### 1. GLFW
@@ -32,15 +55,15 @@
    * APIs: GL 3.2 + Core
 3. 下载 zip 包，解压后：
 
-   * `glad.c`（也可能叫gl.c) → `src/`
-   * `glad.h`（也可能叫gl.h) → `include/glad/`
+   * `glad.c` → `src/`
+   * `glad.h` → `include/glad/`
    * `khrplatform.h` → `include/KHR/`
 
 ---
 
 ## CMake 配置
 
-Windows 下需要显式链接 `opengl32.lib` 和 `glfw3.lib`。在 `CMakeLists.txt` 里（如果没有，就先在本地工程的根目录下创建CMakeLists.txt）添加：
+Windows 下需要显式链接 `opengl32.lib` 和 `glfw3.lib`。在 `CMakeLists.txt` 里添加：
 
 ```cmake
 target_link_libraries(demo PRIVATE glfw3 opengl32)
