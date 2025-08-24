@@ -147,8 +147,8 @@ Shader 编写完后，并不能在窗口里直接使用。
 
 ## 六、文件准备步骤总结
 
-1. 导入字典：`gl.c`, `gl.h`, `khrplatform.h` （之前已完成）
-2. 导入工程配置：`CMakeLists.txt`
+1. 导入字典：`gl.c`, `gl.h`, `khrplatform.h` （参考`platform_xxx.md`）
+2. 导入工程配置：`CMakeLists.txt`（参考`platform_xxx.md`）
 3. 编写shader1：顶点着色器 `triangle.vert`
 4. 编写shader2：片元着色器 `triangle.frag`
 5. 编写 `main.cpp`
