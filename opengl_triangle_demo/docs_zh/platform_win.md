@@ -7,6 +7,10 @@
 * 包管理：无内置，需要手动下载依赖
 * OpenGL 注意事项：Windows 自带 `opengl32.dll`，无需额外安装
 
+> 如果你还没有 Visual Studio 或 MinGW 环境，请先阅读 [windows\_setup.md](./windows_setup.md)，选择一条路线完成环境准备。
+
+---
+
 ## 安装依赖
 
 ### 1. GLFW
@@ -32,6 +36,8 @@
    * `glad.h` → `include/glad/`
    * `khrplatform.h` → `include/KHR/`
 
+---
+
 ## CMake 配置
 
 Windows 下需要显式链接 `opengl32.lib` 和 `glfw3.lib`。在 `CMakeLists.txt` 里添加：
@@ -47,6 +53,8 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 link_directories(${CMAKE_SOURCE_DIR}/libs)
 ```
 
+---
+
 ## Visual Studio 配置方法（可选）
 
 如果不用 CMake，直接在 VS 工程里配置：
@@ -54,6 +62,8 @@ link_directories(${CMAKE_SOURCE_DIR}/libs)
 * **C/C++ → 附加包含目录**：`include/`
 * **链接器 → 附加库目录**：`libs/`
 * **链接器 → 输入 → 附加依赖项**：`glfw3.lib; opengl32.lib;`
+
+---
 
 ## 运行注意事项
 
