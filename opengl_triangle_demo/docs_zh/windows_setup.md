@@ -1,86 +1,100 @@
 # Windows 环境准备教程
 
-对于 Windows 用户来说，要编译和运行本项目，有 **两条常见路线**。你可以根据自己的习惯和磁盘空间来选择。
+这是**环境搭建的起步篇**：先把路修好，再运货。此文档**不需要你已有任何源码或 CMake 文件**，只帮你把 Windows 的开发环境装好、路径配好，并准备一个空的工作目录。等环境 OK 了，你再往里面放代码就行。
+
+---
+
+## 两条路线（二选一即可）
+
+* **路线 A：Visual Studio Community**（新手友好，一站式）
+* **路线 B：MinGW‑w64 + CMake**（轻量命令行派）
 
 ---
 
 ## 路线 A：Visual Studio Community（推荐给新手）
 
-Visual Studio 是微软官方的 IDE，功能完整，集成度高，安装后几乎什么都不用再配置。
+### 1) 准备一个**空的**工作目录
 
-### 1. 下载 Visual Studio
+在资源管理器里创建（暂时不用放任何文件）：
 
-* 访问 [Visual Studio 官网](https://visualstudio.microsoft.com/zh-hans/)
-* 下载 **Visual Studio Community**（免费版）
+```
+C:\dev\opengl_triangle_demo\
+```
 
-### 2. 安装时选择工作负载
+> 你也可以放到任意路径，比如 D 盘。重点是：**现在先空着**。
 
-* 在安装界面，勾选 **“使用 C++ 的桌面开发”**（Desktop development with C++）
-* 这会安装 MSVC 编译器、Windows SDK 和调试器
+### 2) 安装 Visual Studio
 
-### 3. 打开并运行项目
+* 前往官网下载安装 **Visual Studio Community 2022**（免费）
+* 安装器里勾选 **“使用 C++ 的桌面开发”**（Desktop development with C++）
 
-* 打开 Visual Studio
-* 第一次启动时会出现一个选择面板，不要点“创建新项目”！
-* 请选择 **“打开 CMake...”**，然后定位到项目根目录的 `CMakeLists.txt`
-* VS 会自动识别为 CMake 工程，点击运行按钮即可构建并执行
+### 3) 启动 VS 并打开**文件夹**（不是“新建项目”）
 
-> 优点：
->
-> * 一站式环境，新手友好
-> * 自带调试工具
->
-> 缺点：
->
-> * 安装包比较大（几 GB）
+* 打开 VS2022 起始面板，选择 **“打开本地文件夹(E)”**
+* 选中刚才的 `C:\dev\opengl_triangle_demo\`
+* 此时 VS 进入“文件夹视图”。因为目录还空着，**不会**显示 CMake 工程，这是**正常**的。
+
+### 4) 验证工具是否可用（可选）
+
+* 在 VS 顶部菜单 **“视图 → 终端”** 打开集成终端
+* 运行：
+
+  ```powershell
+  cmake --version
+  cl
+  ```
+
+  * 若 `cmake` 未找到，可稍后安装 CMake（见路线 B 的第 3 步），或使用 VS 自带的 CMake 支持；
+  * `cl` 打印出 MSVC 版本号即可。
+
+> 现在环境就绪、目录也建好了。**之后当你拥有代码与 `CMakeLists.txt` 时**，把它们放进这个目录，VS 会自动识别并配置构建。
 
 ---
 
-## 路线 B：MinGW-w64 + CMake（轻量级）
+## 路线 B：MinGW‑w64 + CMake（轻量命令行）
 
-如果你不想安装 Visual Studio，可以用 **MinGW-w64** 提供的 GCC/Clang 工具链。
+### 1) 准备一个**空的**工作目录
 
-### 1. 下载 MinGW-w64
+创建：
 
-* 推荐从 [WinLibs](https://winlibs.com/) 获取预编译包
-* 选择最新的 **GCC + MinGW-w64 + UCRT** 版本
-* 解压到 `C:/mingw64`
-
-### 2. 配置环境变量
-
-* 将 `C:/mingw64/bin` 加入系统环境变量 `PATH`
-* 在命令行输入 `gcc --version` 验证是否安装成功
-
-### 3. 使用 CMake 构建
-
-```bash
-mkdir build && cd build
-cmake -G "MinGW Makefiles" ..
-cmake --build .
+```
+C:\dev\opengl_triangle_demo\
 ```
 
-* 成功后会生成 `demo.exe`
+### 2) 安装 MinGW‑w64（GCC 工具链）
 
-### 4. 运行
+* 建议从 WinLibs 获取带 UCRT 的预编译包（64‑bit）
+* 解压到 `C:\mingw64`（示例路径）
+* 将 `C:\mingw64\bin` 追加到 **系统环境变量 PATH**
 
-```bash
-./demo.exe
+### 3) 安装 CMake（Windows x64 安装包）
+
+* 安装时勾选“**Add CMake to system PATH**”或手动把其 `bin` 目录加入 PATH
+
+### 4) 验证安装
+
+打开 PowerShell：
+
+```powershell
+gcc --version
+cmake --version
 ```
 
-> 优点：
+能看到版本号说明工具可用。
+
+> 之后当你有源码与 `CMakeLists.txt` 时，在该目录执行：
 >
-> * 轻量，不依赖 Visual Studio
-> * 纯命令行，适合熟悉 Linux/Unix 的用户
->
-> 缺点：
->
-> * 没有自带的 IDE 和调试器，需要额外安装 VSCode/CLion 等
+> ```powershell
+> mkdir build; cd build
+> cmake -G "MinGW Makefiles" ..
+> cmake --build .
+> ```
 
 ---
 
-## 总结
+## 该文档做到哪一步为止？
 
-* **如果你是初学者** → 推荐 **路线 A (Visual Studio)**，简单省心
-* **如果你习惯命令行** → 选择 **路线 B (MinGW + CMake)**，灵活轻量
+* ✅ 完成：装好编译工具、配好 PATH、创建好**空目录**。
+* ⏭️ 下一步（等你准备好源码时再做）：把代码与 `CMakeLists.txt` 放进这个目录，然后用 VS 或命令行编译运行。
 
-无论选择哪条路线，编译运行的最终效果是一样的：一个带呼吸渐变的三角形窗口。
+> 小贴士：不要在 VS 起始界面点 **“创建新项目”** 或 **“打开项目或解决方案”**。我们是**以文件夹为单位**的工作流；当目录里出现 `CMakeLists.txt` 时，VS 才会把它识别为 CMake 工程。
