@@ -10,29 +10,24 @@
 * 顶点颜色不同，通过接管接管渐变
 * 数字线性跳动呼吸，通过 fragment shader 实现
 
-## 二、开发环境
+## 二、开发环境（通用部分）
 
-| 组件   | 说明                               |
-| ---- | -------------------------------- |
-| 系统   | macOS (Apple Silicon / Intel 均可) |
-| 编译器  | clang (Xcode 自带)                 |
-| 包管理  | Homebrew                         |
-| 构建工具 | CMake                            |
-| 图形库  | OpenGL 3.2 Core Profile          |
-| 依赖   | GLFW + GLAD                      |
+| 组件   | 说明                      |
+| ---- | ----------------------- |
+| 构建工具 | CMake                   |
+| 图形库  | OpenGL 3.2 Core Profile |
+| 依赖   | GLFW + GLAD             |
 
-> 注：macOS 上 OpenGL 被弃用，但 3.2 Core 版本仍可用，是经典入门选择。
+> 平台差异请参考 `platform_mac.md`、`platform_win.md`、`platform_linux.md` 等文件。
 
 ## 三、项目结构
-首先在本地新建一个大文件夹，名字叫 opengl_triangle_demo。
+
+首先在本地新建一个大文件夹，名字叫 opengl\_triangle\_demo。
 再创建几个子文件夹：
 
 * `include`：放头文件（以后 GLAD 的头文件会住在这里）。
-
 * `shaders`：放着色器文件（.vert、.frag），就像给三角形化妆的工具。
-
 * `src`：放源码（.cpp、.c），也就是主程序入口和 GLAD 的实现。
-
 * `build`：空着，等我们用 CMake 构建工程时，它会生成一堆编译结果文件。
 
 最终的目录长这样（此时还没往里塞具体文件）：
@@ -60,26 +55,14 @@ opengl_triangle_demo/
 * `triangle.frag`：frag shader，计算呼吸效果并添加渐变
 * `CMakeLists.txt`：构建配置
 
-## 四、环境部署
+## 四、环境部署（通用部分）
 
-### 安装 GLFW
-
-```bash
-brew install glfw
-```
-
-### 生成 GLAD 文件
+### 下载 GLAD 文件
 
 前往 [https://gen.glad.sh/](https://gen.glad.sh/) 选择配置：
 
 * Generator: C/C++
 * APIs: GL 3.2 + Core
-<img width="2128" height="1478" alt="image" src="https://github.com/user-attachments/assets/ac7cb650-5ead-452c-8dfd-1871caec5453" />
-
-
-在点击网页最下方的按钮generate后，你应该会看到这样的一个网页：
-<img width="2128" height="1172" alt="image" src="https://github.com/user-attachments/assets/f1d5443e-c0c7-4bb2-8681-43fe44f34006" />
-
 
 下载 zip 后，将内容放到:
 
@@ -87,3 +70,10 @@ brew install glfw
 * `gl.h` 放到 `include/glad/`
 * `khrplatform.h` 放到 `include/KHR/`
 
+---
+
+平台特定的安装与编译说明请查看：
+
+* macOS: [platform\_mac.md](./platform_mac.md)
+* Windows: [platform\_win.md](./platform_win.md)
+* Linux: [platform\_linux.md](./platform_linux.md)
