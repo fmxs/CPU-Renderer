@@ -32,15 +32,15 @@
    * APIs: GL 3.2 + Core
 3. 下载 zip 包，解压后：
 
-   * `glad.c` → `src/`
-   * `glad.h` → `include/glad/`
+   * `glad.c`（也可能叫gl.c) → `src/`
+   * `glad.h`（也可能叫gl.h) → `include/glad/`
    * `khrplatform.h` → `include/KHR/`
 
 ---
 
 ## CMake 配置
 
-Windows 下需要显式链接 `opengl32.lib` 和 `glfw3.lib`。在 `CMakeLists.txt` 里添加：
+Windows 下需要显式链接 `opengl32.lib` 和 `glfw3.lib`。在 `CMakeLists.txt` 里（如果没有，就先在本地工程的根目录下创建CMakeLists.txt）添加：
 
 ```cmake
 target_link_libraries(demo PRIVATE glfw3 opengl32)
