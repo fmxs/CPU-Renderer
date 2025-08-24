@@ -7,7 +7,7 @@
 * 包管理：Homebrew（/usr/local… for Intel，/opt/homebrew… for Apple Silicon）
 * OpenGL 注意事项：macOS 将 OpenGL 标记为 **Deprecated**，但 **Core Profile 3.2** 仍可用；需要 **Forward Compatibility**。
 
-> TL;DR：在 mac 上跑 Core Profile，一定要加 `GLFW_OPENGL_FORWARD_COMPAT`，不然可能黑屏或创建上下文失败。
+> 注意：在 mac 上跑 Core Profile，一定要加 `GLFW_OPENGL_FORWARD_COMPAT`，不然可能黑屏或创建上下文失败。
 
 ---
 
@@ -41,8 +41,8 @@ brew install glfw
 
 与其它平台相同，在线生成并放置到项目目录（而不是系统目录）：
 
-* `glad.c` → `src/`
-* `glad.h` → `include/glad/`
+* `glad.c`（也可能叫gl.c) → `src/`
+* `glad.h`（也可能叫gl.h） → `include/glad/`
 * `khrplatform.h` → `include/KHR/`
 
 GLAD 生成参数建议：
@@ -73,57 +73,71 @@ glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 ---
 
-## CMake 配置
+## 创建 CMakeLists.txt（必须）
 
-有两种常见路数：
-
-### A) 走 Homebrew 的 `glfw3` 包（推荐）
+在项目根目录创建 `CMakeLists.txt` 文件（与 `src/`、`include/` 平级）。使用最小可用模板：
 
 ```cmake
 cmake_minimum_required(VERSION 3.15)
-project(opengl_triangle_demo)
+project(opengl_triangle_demo CXX)
 set(CMAKE_CXX_STANDARD 17)
-
-# 指定 Homebrew 前缀（仅 Apple Silicon 可能需要）
-# set(HOMEBREW_PREFIX "/opt/homebrew")
-# list(APPEND CMAKE_PREFIX_PATH "${HOMEBREW_PREFIX}")
 
 find_package(glfw3 REQUIRED)
 
 add_executable(demo
-    src/main.cpp
-    src/gl.c
+  src/main.cpp
+  src/gl.c
 )
 
-# 头文件（本项目的 include 放 GLAD 头）
+# 本项目的头文件（放了 GLAD 头）
 target_include_directories(demo PRIVATE ${CMAKE_SOURCE_DIR}/include)
 
-# 链接 GLFW（find_package 已包含依赖）
+# 链接 GLFW
 target_link_libraries(demo PRIVATE glfw)
 ```
 
-> 如果 `find_package(glfw3 REQUIRED)` 失败：
->
-> * Apple Silicon：在命令行用 `-DCMAKE_PREFIX_PATH=/opt/homebrew`
-> * Intel：`-DCMAKE_PREFIX_PATH=/usr/local`
+> 说明：这份是教学用的“最小版”，配合 Homebrew 安装的 `glfw3` 即可。若 CMake 找不到 `glfw3`，在配置阶段加：`-DCMAKE_PREFIX_PATH=/opt/homebrew`（Apple Silicon）或 `-DCMAKE_PREFIX_PATH=/usr/local`（Intel）。
 
-### B) 手工指定库目录（兜底方案）
+### 进阶：找不到包时的“保险版”模板（与常见本地写法等价）
+
+如果仍然找不到包，或你希望**显式指定路径**，可以使用下方更“啰嗦但稳妥”的模板：
 
 ```cmake
-add_executable(demo src/main.cpp src/gl.c)
+enable_language(C)
+cmake_minimum_required(VERSION 3.15)
+project(ColoredTriangle CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-# 头文件目录
-target_include_directories(demo PRIVATE
-    ${CMAKE_SOURCE_DIR}/include
-    /opt/homebrew/include   # 或 /usr/local/include（Intel）
+find_package(OpenGL REQUIRED)
+find_path(GLFW_INCLUDE_DIR GLFW/glfw3.h /opt/homebrew/include /usr/local/include)
+find_library(GLFW_LIB glfw /opt/homebrew/lib /usr/local/lib)
+
+include_directories(
+  ${GLFW_INCLUDE_DIR}
+  ${CMAKE_SOURCE_DIR}/include
 )
 
-# 链接目录（根据实际平台替换路径）
-link_directories(/opt/homebrew/lib)
+add_executable(tri
+  src/main.cpp
+  src/gl.c
+)
 
-# 链接库
-target_link_libraries(demo PRIVATE glfw)
+target_link_libraries(tri
+  ${GLFW_LIB}
+  ${OPENGL_gl_LIBRARY}
+)
+
+if(APPLE)
+  target_link_libraries(tri
+    "-framework Cocoa"
+    "-framework IOKit"
+    "-framework CoreVideo"
+  )
+endif()
 ```
+
+> 用哪一个？默认用“最小版”。只有当 `find_package(glfw3)` 找不到，或者你想完全控制路径时，再用“保险版”。
 
 ---
 
@@ -131,8 +145,6 @@ target_link_libraries(demo PRIVATE glfw)
 
 ```bash
 mkdir -p build && cd build
-# Apple Silicon 若需，显式告诉 CMake 去 Homebrew 前缀找包：
-# cmake -DCMAKE_PREFIX_PATH=/opt/homebrew ..
 cmake ..
 cmake --build . -j
 ./demo
