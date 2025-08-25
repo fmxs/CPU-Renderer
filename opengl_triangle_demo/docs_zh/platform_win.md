@@ -34,6 +34,17 @@ C:\dev\opengl_triangle_demo\
 
 ---
 
+## main.cpp 编写（最小可运行）
+
+你至少需要写一个入口函数 main()，否则链接器会报错 `LNK2019: unresolved external symbol main：`
+
+```c
+int main() {
+    return 0;
+}
+```
+---
+
 ## 安装依赖
 
 ### 1) GLFW
