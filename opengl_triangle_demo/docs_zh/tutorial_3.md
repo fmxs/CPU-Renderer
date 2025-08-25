@@ -1,6 +1,6 @@
 # OpenGL 三角形 Demo 实践教程：构建一个会呼吸的渐变三角形
 
-## 七、顶点着色器（triangle.vert）
+## 3-1、顶点着色器（triangle.vert）
 
 上节我们已经准备好工程文件，这一节来看看第一个主角：**顶点着色器**。  
 它的名字叫做 `triangle.vert`，后缀 `.vert` 代表它是 **vertex shader**。
