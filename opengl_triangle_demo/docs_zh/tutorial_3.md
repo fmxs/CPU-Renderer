@@ -37,18 +37,18 @@ void main()
 }
 ```
 
-需要将代码复制粘贴到你工程中的 shaders/triangle.vert文件中（如果没有就先创建一个）。
+需要将代码复制粘贴到你工程中的 `shaders/triangle.vert`文件中（如果没有就先创建一个）。
 
 ---
 一行一行拆解
 
-1. #version 150 core
+1. `#version 150 core`
 
-这行声明使用 GLSL 1.50（OpenGL 3.2 的着色器语言版本）。macOS 默认支持这个版本。
+这行声明使用 `GLSL 1.50`（OpenGL 3.2 的着色器语言版本）。macOS 默认支持这个版本。
 
-注意：这个版本不支持 layout(location = …)，所以输入变量的属性位置（location）不能写在 shader 里，必须由 C++ 程序来绑定，下面会讲。
+注意：这个版本不支持 `layout(location = …)`，所以输入变量的属性位置 `(location）`不能写在 shader 里，必须由 C++ `main`程序来绑定，下面会讲。
 
-2. in vec2 aPos;
+2. `in vec2 aPos;`
 
 这句话是在声明一个“输入属性”，我们会从 GPU 的 VAO/VBO 中读取顶点位置数据，`in` 表示外界会提前把这个变量赋值好，然后传进我们的顶点着色器里。
 
@@ -56,7 +56,7 @@ void main()
 
 `aPos` 是我们自定义的变量名，它是接收从 VBO 传进来的位置数据的，关键还是在 main 函数中用 `glBindAttribLocation`来绑定变量到正确的位置（location 0），这个我们之后会介绍。
 
-3. in vec3 aColor;
+3. `in vec3 aColor;`
 
 这句话和上一句很像，它是在声明一个“输入颜色”；
 
@@ -64,7 +64,7 @@ void main()
 
 `aColor`是接受从 VBO 传进来的颜色数据的，后面我们会绑定它到正确的位置（location 1）；
 
-4. out vec3 vColor;
+4. `out vec3 vColor;`
 
 这是在将一个变量输出并传递给下一个阶段：片元着色器；
 
@@ -78,11 +78,11 @@ out 就是在定义一个传出变量，之后的片元着色器里会接收这�
 
 传递的内容是顶点颜色（RGB），所以用vec3——三维向量来表示；
 
-5. gl_Position = vec4(aPos, 0.0, 1.0);
+5. `gl_Position = vec4(aPos, 0.0, 1.0);`
 
 三角形的每个顶点原本用 x 和 y 表示，现在为了方便矩阵运算，就要将每个顶点转成齐次坐标；
 
-齐次坐标是四元的，用x, y, z, w表示，因此这里用：vec4；
+齐次坐标是四元的，用x, y, z, w表示，因此这里用：`vec4`；
 
 目前情况下，表示深度的 z 值还没有用上，所以 齐次坐标的第三元 `z` = `0.0`；
 
@@ -90,7 +90,7 @@ out 就是在定义一个传出变量，之后的片元着色器里会接收这�
 
 我们这里想表示的是三角形的顶点，所以 齐次坐标的第四元 `w` = `1.0`。
 
-6. vColor = aColor;
+6. `vColor = aColor;`
 
 在顶点着色器中，我们不处理颜色，所以直接把原本输入的 aColor 赋值 给vColor就可以了；
 
