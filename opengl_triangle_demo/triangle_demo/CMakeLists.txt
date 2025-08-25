@@ -1,7 +1,7 @@
-enable_language(C)
-
 cmake_minimum_required(VERSION 3.15)
 project(ColoredTriangle CXX)
+
+enable_language(C)  # 现在位置对了！
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -18,21 +18,22 @@ include_directories(
   include
 )
 
-add_executable(tri
+# 定义可执行文件
+add_executable(demo
   src/main.cpp
   src/gl.c
 )
 
-target_link_libraries(tri
+# 链接依赖
+target_link_libraries(demo
   ${GLFW_LIB}
   ${OPENGL_gl_LIBRARY}
 )
 
 if(APPLE)
-  target_link_libraries(tri
+  target_link_libraries(demo
     "-framework Cocoa"
     "-framework IOKit"
     "-framework CoreVideo"
   )
 endif()
-
