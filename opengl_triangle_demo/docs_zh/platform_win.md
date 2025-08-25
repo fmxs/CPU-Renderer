@@ -23,11 +23,9 @@ C:\dev\opengl_triangle_demo\
 │   ├── KHR\
 │   └── GLFW\
 ├── libs\                 # 库文件目录（.lib 放这里，编译时使用）
-├── shaders\              # 着色器文件目录
-│   ├── triangle.vert
-│   └── triangle.frag
+├── shaders\              # 着色器文件目录 
 ├── src\                  # 源码目录
-│   ├── main.cpp
+│   ├── main.cpp（需要创建）
 │   └── gl.c
 └── build\                # 空目录，CMake 会在这里生成构建结果
 ```
