@@ -48,7 +48,7 @@ OpenGL 是个老实人，**它不会自动重绘**。你不告诉它“下一帧
 
 ---
 
-## 8-4 📦 本节目标：写一个叫 `renderLoop()` 的函数
+## 8-4 📦 本节目标：在main.CPP中写一个叫 `renderLoop()` 的函数
 
 ```cpp
 void renderLoop(GLFWwindow* window, GLuint prog, GLuint vao, GLint u_time);
