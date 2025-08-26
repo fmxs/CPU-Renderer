@@ -1,72 +1,84 @@
-本仓库包括 CPU 渲染器实现（使用 WinAPI）以及 GPU 渲染器对照 demo（使用 OpenGL）。
-# 关于 Tiny Renderer
-Tiny Renderer是ssloy制作的CPU渲染器教程，不过是全英文，本人根据他的教程写了中文教程。
+# 🎮 CPU/GPU 渲染实践合集 | CPU Renderer + OpenGL Triangle Demo
 
-由于github记笔记比较麻烦，请转移至Notion上查阅：
+欢迎来到这个既手搓 CPU 光栅化、又玩转 GPU Shader 的综合性图形实践仓库。  
+这里包含两个子项目，各自独立又互相关联，适合拿来当面试作品集/技术笔记/手工图形引擎参考。
 
-https://www.notion.so/TinyRenderer-202302131552-b99e56b11f714a269960e88fe5fcd371
+---
 
-# CPU Renderer编写流程
-从零开始写一个Cpu渲染器，对C++小白友好
+## 📦 项目结构一览
 
-语言：C++
+| 目录名 | 项目说明 | 技术栈 | 适用平台 |
+|--------|----------|--------|----------|
+| [`cpu-renderer/`](./cpu-renderer) | 基于 C++/WinAPI 实现的 CPU 级光栅化渲染器 | C++、WinAPI、数学库 | Windows |
+| [`opengl_triangle_demo/`](./opengl_triangle_demo) | 彩色三角形 + 动态 Shader 实现的 OpenGL demo | C++、GLFW、GLAD、OpenGL 3.2 | macOS / Windows |
 
-编译器：Visual Studio 2022
+---
 
-## 编写流程：
-## 1. 数学库的编写
-1. 实现VECTOR3
-2. 实现VECTOR4，
-3. 实现MATRIX4，包括转置矩阵，矩阵与向量的乘法问题（左乘，右乘）
-## 2. Win窗口的创建
-1. 主要使用win api去创建一个1024*768的窗口
-## 3. Win窗口清除算法
-有两种方法，
-1. 直接使用win api 的setpixel 
-2. 使用位图Bitblt绘制（涉及Framebuffer的概念，使用hdc）
-## 4. 绘制一条线段
-1. 使用DDA(digital differential analyzer) 算法，在一个坐标轴上对线段以单位间隔取样，计算另一坐标轴上最靠近线段的对应整数值。
-2. 使用Bresenham算法。Bresenham 算法是一个只用整数增量进行计算，精确并且有效的光栅线生成算法。
-## 5. 三角形坐标系转化（注意左右手系的选择）（1,1,1）（100,200） (200,300)
-World（model）、View（Camera）、Projection、NDC、视口变换
-## 6. 三角形矩阵变换
-模型变换矩阵 平移、缩放、旋转
-## 7. 键盘控制
-控制物体的平移旋转缩放
-## 8. FPS显示
-用window画笔
-## 9. 扫描线算法(左上规则)
-## 10. 背面剔除
-## 11. 消隐算法(zbuffer)
-
-# 🌈 OpenGL 彩色三角形 Demo（macOS 版）
-
-> 🚀 这个 Demo 是我为了实践 OpenGL 渲染流水线，结合 Shader 动态效果而写的小项目，**从顶点坐标 → 插值颜色 → 动态 uniform 控制动画**，完整打通了现代 GPU 管线流程。  
-> 它可作为本仓库 CPU 渲染器部分的「GPU 对照组」，有助于理解两种渲染方式的本质异同。
-
-### 📁 项目路径：
-`opengl_triangle_demo/`
-
-### 💻 技术栈：
-- C++
-- OpenGL 3.2 Core Profile（macOS 兼容）
-- GLAD + GLFW
-- CMake 构建系统
-
-### 🎯 实现效果：
-- 屏幕显示一个彩色渐变三角形
-- 三角形旋转（顶点着色器中通过时间控制）
-- 颜色呼吸（片元着色器中通过 sin(time) 控制）
-
-### 📷 效果图（带呼吸效果）：
-<img width="1600" height="1260" alt="image" src="https://github.com/user-attachments/assets/4d03da7a-0596-4dff-aecb-9d7368341beb" />
-
-
-
-### 📝 使用方法：
+## 🔧 快速开始（构建方法）
 
 ```bash
+# OpenGL 彩色三角形 Demo（macOS / Windows）
 cd opengl_triangle_demo
 cmake -S . -B build
 cmake --build build -j
 ./build/bin/tri
+````
+
+确保你已经安装以下依赖：
+- CMake ≥ 3.15
+- C++17 编译器（推荐 clang / MSVC / g++）
+- 对于 OpenGL demo：
+  - macOS：自带 OpenGL 3.2 Core Profile
+  - Windows：需下载并配置 GLFW/GLAD（见子项目教程）
+
+
+---
+
+## 📚 子项目详情
+
+### 🔸 [CPU 渲染器](./cpu-renderer/README.md)
+
+基于 TinyRenderer 教程，从零实现光栅化渲染流程，包括：
+
+* 手写数学库（Vector、Matrix）
+* DDA/Bresenham 线段算法
+* 屏幕坐标变换
+* 扫描线三角形填充 + 背面剔除 + Z-buffer 消隐
+* WinAPI 绘制窗口、键盘控制、FPS 显示
+
+> 本项目更适合作为“图形学入门 + C++ 实战练手”的双拼套餐。
+> 👉 阅读子项目文档：[cpu-renderer/README.md](./cpu-renderer/README.md)
+
+---
+
+### 🔸 [OpenGL Triangle Demo](./opengl_triangle_demo/README.md)
+
+完整实现一个 GPU 渲染路径的小 Demo，包含：
+
+* Vertex Shader + Fragment Shader 的编写与加载
+* 时间驱动的颜色脉冲动画
+* 使用 GLFW + GLAD 初始化上下文
+* OpenGL Core Profile 下 glDrawArrays 调用路径分析
+
+> 这是你面试时最容易讲清楚、又最容易 impress 面试官的小 demo。
+> 👉 阅读子项目文档：[opengl\_triangle\_demo/README.md](./opengl_triangle_demo/README.md)
+
+---
+
+## 🗺️ 路线图（开发进度）
+
+当前的学习和开发进度安排如下：
+
+* [x] Week1: C++ 内存模型、对象池、自定义分配器
+* [x] Week2: OpenGL Triangle + UI 批渲染系统构建中
+* [ ] Week3: 网络同步 / FPS 专题（子弹、地图、穿透）
+* [ ] Week4: 项目整合、面试话术准备
+
+---
+
+## 🧠 License & 联系方式
+
+代码与文档基于 MIT 协议开放。
+如有任何合作或内推交流，欢迎通过 GitHub Issues 联系我 @fmxs。
+
+---
