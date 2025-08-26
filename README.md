@@ -9,7 +9,7 @@
 
 | 目录名 | 项目说明 | 技术栈 | 适用平台 |
 |--------|----------|--------|----------|
-| [`cpu-renderer/`](./cpu-renderer) | 基于 C++/WinAPI 实现的 CPU 级光栅化渲染器 | C++、WinAPI、数学库 | Windows |
+| [`TinyRenderer_tutorial/`](./TinyRenderer_tutorial) | 基于 C++/WinAPI 实现的 CPU 级光栅化渲染器 | C++、WinAPI、数学库 | Windows |
 | [`opengl_triangle_demo/`](./opengl_triangle_demo) | 彩色三角形 + 动态 Shader 实现的 OpenGL demo | C++、GLFW、GLAD、OpenGL 3.2 | macOS / Windows |
 
 ---
@@ -47,7 +47,7 @@ cmake --build build -j
 * WinAPI 绘制窗口、键盘控制、FPS 显示
 
 > 本项目更适合作为“图形学入门 + C++ 实战练手”的双拼套餐。
-> 👉 阅读子项目文档：[cpu-renderer/README.md](./cpu-renderer/README.md)
+> 👉 阅读子项目文档：[TinyRenderer_tutorial/README.md](./TinyRenderer_tutorial/README.md)
 
 ---
 
