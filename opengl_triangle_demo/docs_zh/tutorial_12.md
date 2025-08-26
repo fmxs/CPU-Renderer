@@ -135,5 +135,7 @@ while (!glfwWindowShouldClose(window)) {
 
 ---
 到目前为止的内容，一周时间已经可以做完。
+
 下一节（如果我写了）：我们将进入 Week2，正式开写 UI 系统与 DrawCall 优化！
+
 从“一个三角形”变成“一个游戏 UI 框架”的蜕变，从这一刻开始。
