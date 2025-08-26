@@ -1,4 +1,4 @@
-# Windows 平台部署说明（支持 Visual Studio / MinGW 分流）
+# Windows 平台部署说明
 
 ## 开发环境
 
