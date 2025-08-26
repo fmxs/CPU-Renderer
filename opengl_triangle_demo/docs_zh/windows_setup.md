@@ -1,53 +1,69 @@
 # Windows 环境准备教程
 
-这是**环境搭建的起步篇**：先把路修好，再运货。此文档**不需要你已有任何源码或 CMake 文件**，只帮你把 Windows 的开发环境装好、路径配好，并准备一个空的工作目录。等环境 OK 了，你再往里面放代码就行。
+这是 **环境搭建的起步篇**：先把路修好，再运货。本教程分为两条路线：
+
+* Visual Studio 用户（2022 与 2019 配置略有不同）
+* MinGW 用户
+
+你不需要已有源码或 CMake 文件，只需要按照下面的说明把开发环境装好、路径配好，并准备一个空的工作目录。
 
 ---
 
-## 两条路线（二选一即可）
+## 路线 A：Visual Studio Community
 
-* **路线 A：Visual Studio Community**（新手友好，一站式）
-* **路线 B：MinGW‑w64 + CMake**（轻量命令行派）
+### 1) 创建一个空的工作目录
 
----
-
-## 路线 A：Visual Studio Community（推荐给新手）
-
-### 1) 准备一个**空的**工作目录
-
-在资源管理器里创建（暂时不用放任何文件）：
-
-```
+```powershell
 C:\dev\opengl_triangle_demo\
 ```
 
-> 你也可以放到任意路径，比如 D 盘。重点是：**现在先空着**。
+此目录用于放置代码与构建产物。现在可以是空的。
 
-### 2) 安装 Visual Studio
+---
 
-* 前往官网下载安装 **Visual Studio Community 2022**（免费）
-* 安装器里勾选 **“使用 C++ 的桌面开发”**（Desktop development with C++）
+### 2) 安装 Visual Studio（按版本选择）
 
-### 3) 启动 VS 并打开**文件夹**（不是“新建项目”）
+#### ✅ Visual Studio 2022
 
-* 打开 VS2022 起始面板，选择 **“打开本地文件夹(E)”**
-* 选中刚才的 `C:\dev\opengl_triangle_demo\`
-* 此时 VS 进入“文件夹视图”。因为目录还空着，**不会**显示 CMake 工程，这是**正常**的。
+* 前往官网下载 [Visual Studio Community 2022](https://visualstudio.microsoft.com/zh-hans/vs/community/)
+* 安装器中勾选：**“使用 C++ 的桌面开发”**（Desktop development with C++）
+* 不需要额外安装 CMake（VS2022 自带）
 
-### 4) 验证工具是否可用（可选）
+#### ✅ Visual Studio 2019
 
-* 在 VS 顶部菜单 **“视图 → 终端”** 打开集成终端
-* 运行：
+* 前往官网下载 [Visual Studio 2019](https://visualstudio.microsoft.com/vs/older-downloads/)
+* 安装器中勾选：**“使用 C++ 的桌面开发”**
+* ⚠️ **需要手动安装 CMake：**
 
-  ```powershell
-  cmake --version
-  cl
-  ```
+  * 安装 [CMake 官方版本](https://cmake.org/download/)
+  * 安装时勾选 “Add CMake to system PATH”
 
-  * 若 `cmake` 未找到，可稍后安装 CMake（见路线 B 的第 3 步），或使用 VS 自带的 CMake 支持；
-  * `cl` 打印出 MSVC 版本号即可。
+安装完成后，打开 PowerShell 或 VS 的终端，验证工具：
 
-> 现在环境就绪、目录也建好了。**之后当你拥有代码与 `CMakeLists.txt` 时**，把它们放进这个目录，VS 会自动识别并配置构建。
+```powershell
+cmake --version  # 查看 CMake 是否可用
+cl               # 查看 MSVC 编译器是否正常输出版本号
+```
+
+---
+
+### 3) 打开 VS 并加载文件夹
+
+* 启动 Visual Studio
+* 选择 **“打开本地文件夹”**（不是“新建项目”）
+* 选中：`C:\dev\opengl_triangle_demo\`
+* 此时进入“文件夹视图”，当你放入 `CMakeLists.txt` 后，VS 会自动识别为 CMake 工程。
+
+---
+
+### 4) 提示：CMake 配置刷新机制
+
+如果你修改了 `CMakeLists.txt` 或新复制了 `.lib` 文件，**请手动刷新 CMake 项目**：
+
+* 菜单栏：项目 → 重新加载 CMake 项目
+* 或关闭 VS 后重新打开该文件夹
+
+否则 VS 不会重新识别你的构建内容！
 
 ---
 
