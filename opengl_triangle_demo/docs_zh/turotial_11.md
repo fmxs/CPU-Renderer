@@ -44,22 +44,24 @@ opengl_triangle_demo/
 
 ## 11-3 🪟 Windows - Visual Studio 部署方式（推荐 IDE 用户）
 
-#### ✅ 1. 下载并安装以下工具：
+### ✅ 1. 下载并安装以下工具：
 
 * Visual Studio（2022 或以上）
 * 安装时勾选 “Desktop development with C++”
 * CMake（可选，VS 内置也支持）
 
-#### ✅ 2. 打开命令行，构建工程：
+### ✅ 2. 打开命令行，构建工程：
 
 ```bash
-mkdir build && cd build
+cd C:\dev\opengl_triangle_demo
+mkdir build
+cd build
 cmake .. -G "Visual Studio 17 2022"
 ```
 
 会生成一个 `.sln` 工程文件，双击它，在 Visual Studio 里打开。
 
-#### ✅ 3. 设置运行目录（运行时找不到 shader 会崩）
+### ✅ 3. 设置运行目录（运行时找不到 shader 会崩）
 
 * 点中 `demo` 项目 → 属性（Properties）
 * 修改工作目录：`$(ProjectDir)/../`（确保能读到 `shaders/`）
@@ -72,13 +74,13 @@ cmake .. -G "Visual Studio 17 2022"
 
 ## 11-4 🪟 Windows - MinGW 构建方式（命令行玩家）
 
-#### ✅ 1. 安装依赖工具
+### ✅ 1. 安装依赖工具
 
 * 安装 MinGW-w64（64位）
 * 安装 CMake
 * 下载 GLFW 预编译包（glfw-3.3.8.bin.WIN64.zip）
 
-#### ✅ 2. 项目目录结构需额外包含：
+### ✅ 2. 项目目录结构需额外包含：
 
 ```
 libs/
@@ -88,10 +90,12 @@ libs/
 
 > `glfw3.dll` 需要复制到最终生成的 `.exe` 所在目录！
 
-#### ✅ 3. 构建步骤
+### ✅ 3. 构建步骤
 
 ```bash
-mkdir build && cd build
+cd C:\dev\opengl_triangle_demo
+mkdir build
+cd build
 cmake -G "MinGW Makefiles" .. 
 mingw32-make
 ```
@@ -108,10 +112,12 @@ mingw32-make
 brew install glfw cmake
 ```
 
-#### ✅ 2. 构建步骤
+### ✅ 2. 构建步骤
 
 ```bash
-mkdir build && cd build
+cd ~/dev/opengl_triangle_demo
+mkdir build
+cd build
 cmake ..
 make -j8
 ./bin/demo
@@ -119,7 +125,7 @@ make -j8
 
 macOS 自带 OpenGL.framework，Shader 需使用 `#version 150 core`，不能用老语法。
 
-#### ✅ 3. macOS 特别注意：
+### ✅ 3. macOS 特别注意：
 
 * Shader 使用 Core Profile
 * `CMakeLists.txt` 中需要加上：
@@ -148,7 +154,9 @@ sudo apt install cmake g++ libglfw3-dev libgl1-mesa-dev
 #### ✅ 2. 构建步骤
 
 ```bash
-mkdir build && cd build
+cd ~/dev/opengl_triangle_demo
+mkdir build
+cd build
 cmake ..
 make -j8
 ./bin/demo
@@ -179,10 +187,3 @@ make -j8
 | Linux         | `cmake .. && make -j8`                          |
 | Windows-MinGW | `cmake -G "MinGW Makefiles" .. && mingw32-make` |
 | Windows-VS    | `cmake .. -G "Visual Studio 17 2022"` → F5      |
-
----
-
-下一节，胖爷可以给你写一份跨平台 `README.md` 或者教你怎么打包 zip / 版本管理，
-也可以进入 Week2 正题：**UI drawcall 优化、背包/排行榜 Demo 架构**。
-
-选吧，天真，这节是铺地板，下一节开始造家具了。往哪走？
