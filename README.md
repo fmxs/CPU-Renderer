@@ -60,7 +60,6 @@ cmake --build build -j
 * 使用 GLFW + GLAD 初始化上下文
 * OpenGL Core Profile 下 glDrawArrays 调用路径分析
 
-> 这是你面试时最容易讲清楚、又最容易 impress 面试官的小 demo。
 > 👉 阅读子项目文档：[opengl\_triangle\_demo/README.md](./opengl_triangle_demo/README.md)
 
 ---
