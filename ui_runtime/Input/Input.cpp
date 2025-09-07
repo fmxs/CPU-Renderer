@@ -1,5 +1,5 @@
 #include "Input.h"
-#include <GLFW/glfw3.h>
+#include "Core/GLFWIncludes.h"
 #include "../Core/Log.h"
 
 namespace {

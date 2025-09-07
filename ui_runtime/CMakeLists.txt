@@ -29,6 +29,8 @@ add_executable(ui-demo
   Core/Time.cpp
   Core/Log.cpp
   Input/Input.cpp
+  Render/DrawList.cpp
+  Render/Renderer2D_GL.cpp
 )
 
 target_include_directories(ui-demo PRIVATE

@@ -1,5 +1,5 @@
 #include "Time.h"
-#include <GLFW/glfw3.h>
+#include "Core/GLFWIncludes.h"
 #include <algorithm>
 
 namespace {
