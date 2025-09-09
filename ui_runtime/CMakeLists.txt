@@ -49,3 +49,21 @@ if(APPLE)
   target_link_libraries(ui-demo PRIVATE
     "-framework Cocoa" "-framework IOKit" "-framework CoreVideo" "-framework OpenGL")
 endif()
+
+# ===== Demos: d00_boot =====
+add_executable(demo-d00-boot
+  Demos/d00_boot/main.cpp
+  Input/Input.cpp
+  Core/Time.cpp
+  Core/Log.cpp
+  Render/DrawList.cpp
+  Render/Renderer2D_GL.cpp
+)
+target_include_directories(demo-d00-boot PRIVATE
+  ${CMAKE_CURRENT_SOURCE_DIR}
+)
+target_link_libraries(demo-d00-boot PRIVATE glfw)
+if(APPLE)
+  target_link_libraries(demo-d00-boot PRIVATE
+    "-framework Cocoa" "-framework IOKit" "-framework CoreVideo" "-framework OpenGL")
+endif()
