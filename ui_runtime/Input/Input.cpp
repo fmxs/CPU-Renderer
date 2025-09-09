@@ -24,7 +24,6 @@ static void key_cb(GLFWwindow* win, int key, int, int action, int){
 }
 
 namespace Input {
-    // 注册鼠标移动和按键回调，使 Input::Get().mouseX/mouseY 以window 空间更新。
     void SetupCallbacks(GLFWwindow* win){
       glfwSetCursorPosCallback(win, cursor_pos);
       glfwSetMouseButtonCallback(win, mouse_button);
