@@ -81,11 +81,11 @@ int main(){
     glfwPollEvents();
 
     // 节流日志：验证坐标 & 尺寸
-    if(Core::Time::Now() - lastLog > 2.0){
-      LOGI("fb(%d,%d) ui(%d,%d) mouse(%.0f,%.0f) hover=%d",
-           fbW, fbH, winW, winH, st.mouseX, st.mouseY, hover?1:0);
-      lastLog = Core::Time::Now();
-    }
+      if(Core::Time::Now() - lastLog > 0.5){   // 原来是 2.0
+        LOGI("fb(%d,%d) ui(%d,%d) mouse(%.0f,%.0f) hover=%d",
+             fbW, fbH, winW, winH, st.mouseX, st.mouseY, hover?1:0);
+        lastLog = Core::Time::Now();
+      }
   }
 
   glfwDestroyWindow(win);
