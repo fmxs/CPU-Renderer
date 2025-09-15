@@ -67,3 +67,22 @@ if(APPLE)
   target_link_libraries(demo-d00-boot PRIVATE
     "-framework Cocoa" "-framework IOKit" "-framework CoreVideo" "-framework OpenGL")
 endif()
+
+# ===== Tools: tiny_probe =====
+add_executable(tiny_probe
+  Demos/tiny_probe/main.cpp
+)
+
+# 关键一行：让 glfw 的头路径/编译定义传过来
+target_link_libraries(tiny_probe PRIVATE glfw)
+
+# macOS 还需要这些系统框架（和你 d00 保持一致）
+if(APPLE)
+  target_link_libraries(tiny_probe PRIVATE
+    "-framework Cocoa" "-framework IOKit" "-framework CoreVideo" "-framework OpenGL")
+  target_compile_definitions(tiny_probe PRIVATE GL_SILENCE_DEPRECATION=1)
+endif()
+
+# 如果 tiny_probe 需要包含你工程里的头（比如 Core/…），再开这句更稳：
+target_include_directories(tiny_probe PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
