@@ -61,7 +61,7 @@ int main(){
     DrawList dl;
     dl.PushClip(Rect{0,0,(float)winW,(float)winH});
 
-    // 小测试方块：左上角(40,60) 大小(120,120)
+    // test square 1 ：左上角(40,60) 大小(120,120)
     Rect test{40, 60, 120, 120};
     auto& st = Input::Get();
     bool hover = Contains(test, (float)st.mouseX, (float)st.mouseY);
