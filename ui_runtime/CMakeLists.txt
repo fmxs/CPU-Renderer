@@ -86,3 +86,25 @@ endif()
 # 如果 tiny_probe 需要包含你工程里的头（比如 Core/…），再开这句更稳：
 target_include_directories(tiny_probe PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
+
+
+# ===== Demos: d00_min_loop =====
+add_executable(d00_min_loop
+  Demos/d00_min_loop/main.cpp
+)
+
+# 把当前工程的头路径塞进去（比如你后面要 include Core/… 时才会用到）
+target_include_directories(d00_min_loop PRIVATE
+  ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+# 链接 glfw
+target_link_libraries(d00_min_loop PRIVATE glfw)
+
+# macOS 还得补系统框架（和上面 demo 保持一致）
+if(APPLE)
+  target_link_libraries(d00_min_loop PRIVATE
+    "-framework Cocoa" "-framework IOKit" "-framework CoreVideo" "-framework OpenGL")
+  target_compile_definitions(d00_min_loop PRIVATE GL_SILENCE_DEPRECATION=1)
+endif()
+
