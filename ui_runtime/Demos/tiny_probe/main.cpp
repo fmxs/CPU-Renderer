@@ -1,9 +1,4 @@
 // tiny_probe — 最小数据流探针（GLFW + OpenGL，macOS/Retina 友好）
-// 数据流图
-// OS
-// ├─ Window Size (960x600) → UI 布局、鼠标 → Contains()
-// └─ Framebuffer Size (1920x1200) → glViewport → GPU 渲染
-
 #include <cstdio>
 #include <cmath>
 #include <GLFW/glfw3.h>
