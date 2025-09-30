@@ -54,6 +54,38 @@ void UApplication::Run(){
 
     // 渲染 UI：逻辑坐标绘制
     renderer.BeginFrame(fbW, fbH, winW, winH);
+      
+      // ====== CLIP PROBE BEGIN ======
+      {
+        DrawList probe;
+        // 裁剪到屏幕中央一个 200x200 的小盒子（UI 逻辑空间）
+        Rect clipBox{ (winW - 200) / 2.f, (winH - 200) / 2.f, 200, 200 };
+        probe.PushClip(clipBox);
+
+        // 1) 画一条对角线：从左上到右下，应该只在 clipBox 内可见
+
+        // 2) 大矩形 A：覆盖整屏，颜色偏红，按理说只会在 clipBox 中露出“一个窗口”
+        Rect bigA{ -1000.f, -1000.f, (float)winW + 2000.f, (float)winH + 2000.f };
+        probe.AddQuad(bigA, Color{ 0.6f, 0.2f, 0.2f, 0.7f });
+
+        // 3) 大矩形 B：完全在 clipBox 外（右上角），应该完全不可见
+        Rect bigB{ (float)winW - 180.f, 20.f, 160.f, 160.f };
+        probe.AddQuad(bigB, Color{ 0.2f, 0.6f, 0.2f, 0.7f });
+
+        // 4) 画出 clipBox 的边框方便肉眼确认（用四条细长矩形模拟线）
+        const float th = 1.0f; // “线宽”
+        probe.AddQuad(Rect{ clipBox.x, clipBox.y, clipBox.w, th },                 Color{ 1,1,0,1 }); // 顶
+        probe.AddQuad(Rect{ clipBox.x, clipBox.y + clipBox.h - th, clipBox.w, th }, Color{ 1,1,0,1 }); // 底
+        probe.AddQuad(Rect{ clipBox.x, clipBox.y, th, clipBox.h },                 Color{ 1,1,0,1 }); // 左
+        probe.AddQuad(Rect{ clipBox.x + clipBox.w - th, clipBox.y, th, clipBox.h }, Color{ 1,1,0,1 }); // 右
+
+        probe.PopClip();
+
+        renderer.Submit(probe);
+      }
+      // ====== CLIP PROBE END ======
+
+      
     DrawList dl;
     dl.PushClip(Rect{0,0,(float)winW,(float)winH});
 

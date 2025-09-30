@@ -50,43 +50,6 @@ if(APPLE)
     "-framework Cocoa" "-framework IOKit" "-framework CoreVideo" "-framework OpenGL")
 endif()
 
-# ===== Demos: d00_boot =====
-add_executable(demo-d00-boot
-  Demos/d00_boot/main.cpp
-  Input/Input.cpp
-  Core/Time.cpp
-  Core/Log.cpp
-  Render/DrawList.cpp
-  Render/Renderer2D_GL.cpp
-)
-target_include_directories(demo-d00-boot PRIVATE
-  ${CMAKE_CURRENT_SOURCE_DIR}
-)
-target_link_libraries(demo-d00-boot PRIVATE glfw)
-if(APPLE)
-  target_link_libraries(demo-d00-boot PRIVATE
-    "-framework Cocoa" "-framework IOKit" "-framework CoreVideo" "-framework OpenGL")
-endif()
-
-# ===== Tools: tiny_probe =====
-add_executable(tiny_probe
-  Demos/tiny_probe/main.cpp
-)
-
-# 关键一行：让 glfw 的头路径/编译定义传过来
-target_link_libraries(tiny_probe PRIVATE glfw)
-
-# macOS 还需要这些系统框架（和你 d00 保持一致）
-if(APPLE)
-  target_link_libraries(tiny_probe PRIVATE
-    "-framework Cocoa" "-framework IOKit" "-framework CoreVideo" "-framework OpenGL")
-  target_compile_definitions(tiny_probe PRIVATE GL_SILENCE_DEPRECATION=1)
-endif()
-
-# 如果 tiny_probe 需要包含你工程里的头（比如 Core/…），再开这句更稳：
-target_include_directories(tiny_probe PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-
-
 
 # ===== Demos: d00_min_loop =====
 add_executable(d00_min_loop
@@ -106,5 +69,27 @@ if(APPLE)
   target_link_libraries(d00_min_loop PRIVATE
     "-framework Cocoa" "-framework IOKit" "-framework CoreVideo" "-framework OpenGL")
   target_compile_definitions(d00_min_loop PRIVATE GL_SILENCE_DEPRECATION=1)
+endif()
+
+
+
+# ===== Demos: d01_viewprobe =====
+add_executable(d01_viewprobe
+  Demos/d01_viewprobe/main.cpp
+)
+
+# 把当前工程的头路径塞进去（比如你后面要 include Core/… 时才会用到）
+target_include_directories(d01_viewprobe PRIVATE
+  ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+# 链接 glfw
+target_link_libraries(d01_viewprobe PRIVATE glfw)
+
+# macOS 还得补系统框架（和上面 demo 保持一致）
+if(APPLE)
+  target_link_libraries(d01_viewprobe PRIVATE
+    "-framework Cocoa" "-framework IOKit" "-framework CoreVideo" "-framework OpenGL")
+  target_compile_definitions(d01_viewprobe PRIVATE GL_SILENCE_DEPRECATION=1)
 endif()
 
